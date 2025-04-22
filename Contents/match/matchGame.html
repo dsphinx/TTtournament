@@ -1,0 +1,342 @@
+
+  <style>
+
+    body {
+      font-family: 'DejaVu Sans', sans-serif;
+      font-size: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .match-sheet {
+      width: 100%;
+      max-width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    input.is-invalid {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield; /* Firefox */
+    }
+
+    .match-sheet th,
+    .match-sheet td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 6px;
+    }
+
+    .no-border {
+      border: none !important;
+    }
+
+    .group-cell {
+      font-size: 32px;
+      font-weight: bold;
+      background-color: #ccc;
+      width: 100px;
+      padding: 0;
+    }
+
+    .sub-label {
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    .section-title {
+      background-color: #e6e6e6;
+      font-weight: bold;
+    }
+
+    .label-bold {
+      font-weight: bold;
+    }
+
+    input.form-control {
+      border: none;
+      text-align: center;
+      padding: 0.25rem;
+      font-size: 14px;
+    }
+
+
+  </style>
+
+
+
+<div id="print-area">
+  <form  name="matchform"  id="matchform">
+  <table class="match-sheet table table-bordered">
+    <!-- Τίτλοι -->
+    <tr>
+      <td colspan="2" class="no-border label-bold">[@title]</td>
+      <td colspan="2" class="no-border label-bold">[@titleMen]</td>
+      <td colspan="2" class="no-border label-bold">[@titleDate]</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td colspan="6" class="section-title">ΦΥΛΛΟ ΑΓΩΝΟΣ</td>
+      <td colspan="3" class="section-title">[@titleKind]</td>
+    </tr>
+
+    <tr>
+      <td rowspan="4" class="group-cell">[@titleSide]<br><span class="sub-label">[@titleSub]</span</td>
+      <td class="section-title">ΑΘΛΗΤΕΣ</td>
+      <td class="section-title">1ο ΣΕΤ</td>
+      <td class="section-title">2ο ΣΕΤ</td>
+      <td class="section-title">3ο ΣΕΤ</td>
+      <td class="section-title">4ο ΣΕΤ</td>
+      <td class="section-title">5ο ΣΕΤ</td>
+      <td class="section-title">ΠΟΝΤΟΙ</td>
+      <td class="section-title">ΣΕΤ</td>
+      <td class="section-title">ΥΠΟΓΡΑΦΕΣ</td>
+    </tr>
+
+    <!-- Παίκτης 1 -->
+    <tr>
+      <td width="25%"><strong>[@athleteA]</strong></td>
+      <td><input type="number" class="form-control" name="set1_p1" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set2_p1" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set3_p1" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set4_p1" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set5_p1" min="0" max="30"></td>
+      <td><input type="text" class="form-control" name="points_p1" id="points_p1" > </td>
+      <td><input type="number" class="form-control" name="sets_p1" min="0" max="30"></td>
+      <td></td>
+    </tr>
+
+    <!-- Παίκτης 2 -->
+    <tr>
+      <td><strong>[@athleteB]</strong></td>
+      <td><input type="number" class="form-control" name="set1_p2" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set2_p2" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set3_p2" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set4_p2" min="0" max="30"></td>
+      <td><input type="number" class="form-control" name="set5_p2" min="0" max="30"></td>
+      <td><input type="text" class="form-control" name="points_p2"  id="points_p2"> </td>
+      <td><input type="number" class="form-control" name="sets_p2" min="0" max="30"></td>
+      <td></td>
+    </tr>
+
+
+    <!-- Νικητής -->
+    <tr>
+      <td style="text-align: right">ΝΙΚΗΤΗΣ</td>
+      <td colspan="5" class="section-title">
+
+
+
+        <select name="winner" id="winner" class="form-select">
+          <option></option>
+          <option id="athleteAid" value="[@athleteAid]">[@athleteA]</option>
+          <option id="athleteBid"  value="[@athleteBid]">[@athleteB]</option>
+        </select>
+
+      </td>
+      <td>ΣΚΟΡ</td>
+      <td colspan="2" class="section-title"><input type="text" class="form-control" id="finalscore" name="score"></td>
+    </tr>
+  </table>
+  </form>
+</div>
+
+<div class="text-center my-3">
+  <button type="submit" class="btn btn-primary" onclick="submitForm(event)"> Καταχώρηση Αποτελεσμάτων</button></div>
+
+  <div id="form-response"></div>
+
+  <script>
+
+
+  function validateInputs() {
+    const inputs = document.querySelectorAll('input[type="number"]');
+    let valid = true;
+
+    inputs.forEach(input => {
+      const value = parseInt(input.value, 10);
+
+      if (input.value !== '') {
+        if (isNaN(value) || value < 0 || value > 30) {
+          input.classList.add('is-invalid');
+          valid = false;
+        } else {
+          input.classList.remove('is-invalid');
+        }
+      } else {
+        input.classList.remove('is-invalid');
+      }
+    });
+
+    if (!valid) {
+      alert('⚠️ Παρακαλώ εισάγετε αριθμούς από 0 έως 30 στα κατάλληλα πεδία!');
+    }
+
+    return valid;
+  }
+
+  // Εκτύπωση με έλεγχο
+  function printWithValidation() {
+    if (validateInputs()) {
+      saveResultViaAjax(); // αποθήκευση
+      // window.print();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+
+    numberInputs.forEach(input => {
+      input.addEventListener('keypress', function (e) {
+        // Μόνο αριθμοί 0-9 επιτρέπονται
+        if (!/[0-9]/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+
+      input.addEventListener('input', function () {
+        // Περιορισμός μεταξύ 0 και 30
+        let val = parseInt(this.value, 10);
+        if (val < 0) this.value = 0;
+        if (val > 30) this.value = 30;
+      });
+    });
+  });
+
+
+  function calculateResults() {
+    const sets = 5;
+    let pointsP1 = 0;
+    let pointsP2 = 0;
+    let setsP1 = 0;
+    let setsP2 = 0;
+
+    for (let i = 1; i <= sets; i++) {
+      const p1Input = document.querySelector(`input[name="set${i}_p1"]`);
+      const p2Input = document.querySelector(`input[name="set${i}_p2"]`);
+
+      const val1 = parseInt(p1Input.value, 10);
+      const val2 = parseInt(p2Input.value, 10);
+
+      if (!isNaN(val1)) pointsP1 += val1;
+      if (!isNaN(val2)) pointsP2 += val2;
+
+      if (!isNaN(val1) && !isNaN(val2) && val1 !== val2) {
+        if (val1 > val2) setsP1++;
+        else setsP2++;
+      }
+    }
+
+    // Ενημέρωση των συνολικών πόντων
+    document.querySelector('input[name="points_p1"]').value = pointsP1;
+    document.querySelector('input[name="points_p2"]').value = pointsP2;
+
+    // Ενημέρωση των σετ
+    document.querySelector('input[name="sets_p1"]').value = setsP1;
+    document.querySelector('input[name="sets_p2"]').value = setsP2;
+
+    // Ενημέρωση του τελικού σκορ (π.χ. 3-2)
+    document.querySelector('input[name="score"]').value = `${setsP1}-${setsP2}`;
+
+    // Αυτόματη επιλογή νικητή
+    const winnerSelect = document.getElementById('winner');
+    if (setsP1 > setsP2) {
+      winnerSelect.value = document.querySelector('option[value="[@athleteAid]"]').value;
+    } else if (setsP2 > setsP1) {
+      winnerSelect.value = document.querySelector('option[value="[@athleteBid]"]').value;
+    } else {
+      winnerSelect.value = ''; // κανείς νικητής αν ισοπαλία ή άδειο
+    }
+  }
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const inputs = document.querySelectorAll('input[type="number"]');
+
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        validateInputs();
+        calculateResults(); // καλούμε τη νέα συνάρτηση
+      });
+
+      input.addEventListener('keypress', function (e) {
+        if (!/[0-9]/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+    });
+  });
+
+  // // Αυτόματη επιλογή νικητή
+  // const winnerSelect = document.getElementById('winner');
+  // if (setsP1 > setsP2) {
+  //   winnerSelect.value = document.querySelector('option[value="[@athleteAid]"]').value;
+  // } else if (setsP2 > setsP1) {
+  //   winnerSelect.value = document.querySelector('option[value="[@athleteBid]"]').value;
+  // } else {
+  //   winnerSelect.value = ''; // κανείς νικητής αν ισοπαλία ή άδειο
+  // }
+
+  // Εκτύπωση με έλεγχο
+  function submitForm(event) {
+    event.preventDefault(); // Αποτροπή της προεπιλεγμένης αποστολής φόρμας
+
+    if (validateInputs()) {
+      saveResultViaAjax(); // αποθήκευση
+    }
+  }
+
+  function saveResultViaAjax() {
+
+
+    const formData = new FormData();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const playerId = urlParams.get('id');
+
+    formData.append('id', playerId); // ή βάλε ό,τι τιμή θέλεις εδώ
+    formData.append('winner', document.querySelector('#winner')?.value || '');
+    formData.append('athleteA', document.querySelector('#athleteAid')?.value || '');
+    formData.append('athleteB', document.querySelector('#athleteBid')?.value || '');
+    formData.append('final', document.querySelector('#finalscore')?.value || '');
+    formData.append('athleteAPoints', document.querySelector('#points_p1')?.value || '');
+    formData.append('athleteBPoints', document.querySelector('#points_p2')?.value || '');
+
+
+    // Αν θέλεις να δημιουργήσεις έξτρα πεδία για συνολικό σκορ ανά σετ:
+    for (let i = 1; i <= 5; i++) {
+      const setP1 = document.querySelector(`input[name="set${i}_p1"]`)?.value || '';
+      const setP2 = document.querySelector(`input[name="set${i}_p2"]`)?.value || '';
+      formData.append(`set${i}`, setP1 +"-"+setP2);
+    }
+
+    console.log(formData);
+
+    $.ajax({
+      url: 'Contents/match/completeMatch.php?action=updateMATCH&tbl=game&id=' + playerId,
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function () {
+        $('#form-response').html('<div class="alert alert-success">Οι αλλαγές αποθηκεύτηκαν!</div>');
+      },
+      error: function () {
+        $('#form-response').html('<div class="alert alert-danger">Σφάλμα κατά την αποθήκευση.</div>');
+      }
+    });
+  }
+
+</script>

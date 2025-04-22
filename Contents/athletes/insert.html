@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Εισαγωγή Παίκτη</h2>
+  <div id="form-response" class="mb-3"></div>
+  <form id="insertForm" method="POST">
+
+    <div class="mb-3">
+      <label for="surname" class="form-label">Επώνυμο</label>
+      <input type="text" name="surname" id="surname" class="form-control" maxlength="30" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Όνομα</label>
+      <input type="text" name="name" id="name" class="form-control" maxlength="20" required>
+    </div>
+
+    <div class="mb-5">
+      <label for="yearDOB" class="form-label">Έτος Γέννησης</label>
+      <input type="text" name="yearDOB" id="yearDOB" class="form-control" maxlength="4" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="arithmoisdeltiou" class="form-label">Αριθμός Δελτίου</label>
+      <input type="number" name="arithmoisdeltiou" id="arithmoisdeltiou" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="notes" class="form-label">Σημειώσεις</label>
+      <textarea name="notes" id="notes" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="veteran" class="form-label">Βετεράνος</label>
+      <select name="veteran" id="veteran" class="form-select">
+        <option value="0">Όχι</option>
+        <option value="1">Ναι</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Αποθήκευση</button>
+  </form>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('#insertForm').submit(function (e) {
+      e.preventDefault(); // Μην στείλεις το form κανονικά
+
+      const formData = $(this).serialize();
+
+      $.ajax({
+        url: 'Contents/athletes/insertA.php',
+        type: 'POST',
+        data: formData,
+        success: function (response) {
+          $('#form-response').html('<div class="alert alert-success">Ο παίκτης αποθηκεύτηκε με επιτυχία!</div>');
+          $('#insertForm')[0].reset(); // καθάρισμα φόρμας
+        },
+        error: function (response) {
+          $('#form-response').html('<div class="alert alert-danger">Σφάλμα κατά την αποθήκευση. ' + response  +' </div>');
+        }
+      });
+    });
+  });
+</script>

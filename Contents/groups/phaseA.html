@@ -1,0 +1,308 @@
+<style>
+    .tables-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+    .group-table-container.large {
+        flex: 0 0 75%;
+        min-width: 300px;
+    }
+
+    .group-table-container.small {
+        flex: 0 0 23%; /* λίγο λιγότερο από 20% για να υπάρχει κενό */
+        min-width: 150px;
+    }
+
+    .group-table-container {
+        overflow-x: auto;
+        border: 2px solid #007fbc;
+        font-family: sans-serif;
+    }
+
+    .group-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .game-id-tag a {
+        text-decoration: none;
+        color: inherit; /* διατηρεί το χρώμα του γονέα */
+    }
+
+    .game-id-tag {
+        position: absolute;
+        top: 4px;
+        font-size: 10px;
+        color: white;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    .game-id-tag.right {
+        right: 6px;
+    }
+
+    .game-id-tag.left {
+        left: 6px;
+    }
+
+    .group-table th,
+    .group-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        min-width: 80px;
+    }
+        /* #00a2e8 */
+    .group-header[@grooupNO] {
+        background-color: [@groupColor];
+        color: white;
+        font-weight: bold;
+    }
+
+    .sub-header[@grooupNO] {
+        background-color: [@groupColor];
+        color: black;
+        font-weight: bold;
+    }
+
+    .gray-cell {
+        background-color: #d9d9d9;
+    }
+
+    /*    */
+    .letter-cell[@grooupNO] {
+        background-color: [@groupColor];
+        color: #444;
+        font-size: 48px;
+        font-weight: bold;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: center;
+
+    }
+
+    .noa {
+        text-decoration: none;
+        color: inherit; /* διατηρεί το χρώμα του γονέα */
+
+    }
+
+    @media (max-width: 768px) {
+        .tables-wrapper {
+            flex-direction: column;
+        }
+
+        .group-table-container.large,
+        .group-table-container.small {
+            flex: 1 1 100%;
+        }
+
+        .group-table th,
+        .group-table td {
+            font-size: 14px;
+            min-width: 80px;
+        }
+
+        .letter-cell[@grooupNO]  {
+            font-size: 36px;
+        }
+
+
+    }
+</style>
+
+
+<div class="tables-wrapper">
+    <!-- Πίνακας A (80%) -->
+    <div class="group-table-container large">
+        <table class="group-table">
+            <tr>
+                <td class="letter-cell[@grooupNO]" rowspan="6">[@groupName]</td>
+                <th colspan="5" class="group-header[@grooupNO]"><a href="Contents/print/print.php?group=[@grooupNO]&name=[@groupName]"  class="noa" target="_blank[@grooupNO]">Όμιλος [@groupName]</a></th>
+            </tr>
+            <tr class="sub-header[@grooupNO]">
+                <td class="gray-cell">ΑΘΛΗΤΕΣ</td>
+                <td>[@athlete1]</td>
+                <td>[@athlete2]</td>
+                <td>[@athlete3]</td>
+                <td>[@athlete4]</td>
+            </tr>
+            <tr>
+                <td class="sub-header[@grooupNO]">[@athlete1]</td>
+                <td class="gray-cell"></td>
+
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete12FA]</span>
+                    [@athlete12]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete12Link]">🏓</a></span>
+                </td>
+
+<!--                <td>[@athlete13]</td>-->
+
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete13FA]</span>
+                    [@athlete13]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete13Link]">🏓</a></span>
+                </td>
+
+<!--                <td>[@athlete14]</td>-->
+
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete14FA]</span>
+                    [@athlete14]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete14Link]">🏓</a></span>
+                </td>
+
+
+            </tr>
+            <tr>
+                <td class="sub-header[@grooupNO]">[@athlete2]</td>
+<!--                <td>[@athlete21]-->
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete21FA]</span>
+                    [@athlete21]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete21Link]">🏓</a></span>
+                </td>
+
+
+                <td class="gray-cell"></td>
+<!--                <td>[@athlete23]</td>-->
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete23FA]</span>
+                    [@athlete23]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete23Link]">🏓</a></span>
+                </td>
+
+
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete24FA]</span>
+                    [@athlete24]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete24Link]">🏓</a></span>
+                </td>
+<!--                <td>[@athlete24]</td>-->
+            </tr>
+
+
+
+            <tr>
+                <td class="sub-header[@grooupNO]">[@athlete3]</td>
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete31FA]</span>
+                    [@athlete31]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete31Link]">🏓</a></span>
+                </td>
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete32FA]</span>
+                    [@athlete32]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete32Link]">🏓</a></span>
+                </td>
+                <td class="gray-cell"></td>
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete34FA]</span>
+                    [@athlete34]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete34Link]">🏓</a></span>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="sub-header[@grooupNO]">[@athlete4]</td>
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete41FA]</span>
+                    [@athlete41]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete41Link]">🏓</a></span>
+                </td>
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete42FA]</span>
+                    [@athlete42]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete42Link]">🏓</a></span>
+                </td>
+                <td style="position: relative;">
+                    <span class="game-id-tag left">[@athlete43FA]</span>
+                    [@athlete43]
+                    <span class="game-id-tag right"><a  target="_blank" href="[@athlete43Link]">🏓</a></span>
+                </td>
+
+
+
+
+                <td class="gray-cell"></td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    <!-- Πίνακας B (20%) -->
+    <div class="group-table-container small">
+        <table class="group-table">
+            <tr class="group-header[@grooupNO]">
+                <td>ΑΘΛΗΤΗΣ</td>
+                <td>Κατάταξη</td>
+                <td>Βαθμοί</td>
+                <td>Νίκες</td>
+                <td>Ήττες</td>
+                <td>Σετ Υπερ</td>
+                <td>Σετ Κατα</td>
+                <td>Πόντοι</td>
+            </tr>
+            <tr>
+                <td>[@athlete1_stats]</td>
+                <td>[@athlete1rank_stats]</td>
+                <td>[@athlete1score_stats]</td>
+                <td>[@athlete1wins_stats]</td>
+                <td>[@athlete1lost_stats]</td>
+                <td>[@athlete1setwon_stats]</td>
+                <td>[@athlete1setlost_stats]</td>
+                <td>[@athlete1points]</td>
+            </tr>
+            <tr>
+                <td>[@athlete2_stats]</td>
+                <td>[@athlete2rank_stats]</td>
+                <td>[@athlete2score_stats]</td>
+                <td>[@athlete2wins_stats]</td>
+                <td>[@athlete2lost_stats]</td>
+                <td>[@athlete2setwon_stats]</td>
+                <td>[@athlete2setlost_stats]</td>
+                <td>[@athlete2points]</td>
+
+            </tr>
+            <tr>
+                <td>[@athlete3_stats]</td>
+                <td>[@athlete3rank_stats]</td>
+                <td>[@athlete3score_stats]</td>
+                <td>[@athlete3wins_stats]</td>
+                <td>[@athlete3lost_stats]</td>
+                <td>[@athlete3setwon_stats]</td>
+                <td>[@athlete3setlost_stats]</td>
+                <td>[@athlete3points]</td>
+
+            </tr>
+            <tr>
+                <td>[@athlete4_stats]</td>
+                <td>[@athlete4rank_stats]</td>
+                <td>[@athlete4score_stats]</td>
+                <td>[@athlete4wins_stats]</td>
+                <td>[@athlete4lost_stats]</td>
+                <td>[@athlete4setwon_stats]</td>
+                <td>[@athlete4setlost_stats]</td>
+                <td>[@athlete4points]</td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    document.querySelectorAll('.game-id-tag a').forEach(link => {
+        if (!link.getAttribute('href') || link.getAttribute('href').trim() === '') {
+            link.parentElement.style.display = 'none'; // κρύβει το span που περιέχει το link
+        }
+    });
+</script>

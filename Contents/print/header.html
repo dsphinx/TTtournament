@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="utf-8">
+    <style>
+        @font-face {
+            font-family: 'DejaVu Sans';
+            src: url('DejaVuSans.ttf') format('truetype');
+        }
+
+        body {
+            font-family: 'DejaVu Sans', sans-serif;
+            font-size: 11pt;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        #print-area {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .match-sheet {
+            width: 100%;
+            max-width: 100%;
+            margin: 10px auto;
+            border-collapse: collapse;
+            font-size: 11pt;
+            page-break-inside: avoid;
+        }
+
+        .match-sheet th,
+        .match-sheet td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 6px;
+        }
+
+        .no-border {
+            border: none !important;
+        }
+
+        .group-cell {
+            font-size: 36pt;
+            font-weight: bold;
+            background-color: #ccc;
+            width: 80px;
+            padding: 0;
+        }
+
+        .sub-label {
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .section-title {
+            background-color: #e6e6e6;
+        }
+
+        .fixed-width {
+            font-size: 12px;
+            width: 180px;
+            max-width: 180px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .sets {
+            width: 30px;
+            font-size: 11px;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            #print-area {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .match-sheet {
+                width: 100%;
+                max-width: 900px;
+                page-break-inside: avoid;
+            }
+
+            .match-sheet th,
+            .match-sheet td {
+                border: 1px solid black !important;
+                padding: 5px !important;
+                color: black !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .section-title {
+                background-color: #e6e6e6 !important;
+            }
+
+            .group-cell {
+                background-color: #ccc !important;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 10mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="print-area">

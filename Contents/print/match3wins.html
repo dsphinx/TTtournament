@@ -1,0 +1,183 @@
+<style>
+    /* Γενικά στυλ */
+    @font-face {
+        font-family: 'DejaVu Sans';
+        src: url('../../App/Media/fonts/DejaVuSans.ttf') format('truetype');
+    }
+
+
+    body {
+        /*font-family: Arial, sans-serif;*/
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        font-family: 'DejaVu Sans', sans-serif;
+    }
+
+    .match-sheet {
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+    }
+
+    .match-sheet th,
+    .match-sheet td {
+        border: 1px solid black;
+        text-align: center;
+        padding: 6px;
+    }
+
+    .no-border {
+        border: none !important;
+    }
+
+    .group-cell {
+        font-size: 52px;
+        font-weight: bold;
+        background-color: #ccc;
+        width: 150px;
+        padding: 0;
+    }
+
+    .sub-label {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    .section-title {
+        background-color: #e6e6e6;
+        font-weight: bold;
+    }
+
+    .label-bold {
+        font-weight: bold;
+    }
+
+    @media screen and (max-width: 768px) {
+        .match-sheet {
+            font-size: 13px;
+        }
+
+        .group-cell {
+            font-size: 30px;
+            width: 40px;
+        }
+    }
+
+    /* ------------------------- */
+    /* Εκτύπωση (Print) Styling */
+    /* ------------------------- */
+    @media print {
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .match-sheet {
+            width: 100%;
+            font-size: 12pt;
+            page-break-inside: avoid;
+        }
+
+        .match-sheet th,
+        .match-sheet td {
+            border: 1px solid black !important;
+            padding: 5px !important;
+            color: black !important;
+            background: white !important;
+            -webkit-print-color-adjust: exact !important; /* Chrome/Safari */
+            print-color-adjust: exact !important; /* Firefox */
+        }
+
+        .section-title {
+            background-color: #e6e6e6 !important;
+        }
+
+        .group-cell {
+            background-color: #ccc !important;
+            font-size: 36pt;
+            width: 60px;
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 20mm;
+        }
+    }
+</style>
+
+
+<div id="print-area">
+    <table class="match-sheet">
+        <!-- Title Row -->
+        <tr>
+            <td colspan="2" class="no-border label-bold">20ο ΤΟΥΡΝΟΥΑ ΔΗΜΟΥ ΚΟΖΑΝΗΣ</td>
+            <td colspan="2" class="no-border label-bold">ΑΝΔΡΕΣ 40+ ΕΤΩΝ</td>
+            <td colspan="2" class="no-border label-bold">ΑΠΡΙΛΙΟΣ 2025</td>
+        </tr>
+
+        <!-- Header Row -->
+        <tr>
+            <td></td>
+            <td colspan="6" class="section-title">ΦΥΛΛΟ ΑΓΩΝΟΣ</td>
+            <td colspan="3" class="section-title">ΠΡΟΚΙΜΑΤΙΚΑ</td>
+        </tr>
+
+        <!-- ΟΜΙΛΟΣ & Players -->
+        <tr>
+            <td rowspan="4" class="group-cell">19-1<br><span class="sub-label">ΘΕΣΕΙΣ</span></td>
+            <td class="se1ction-title">ΑΘΛΗΤΕΣ</td>
+            <td class="sec1tion-title">1ο ΣΕΤ</td>
+            <td class="sec1tion-title">2ο ΣΕΤ</td>
+            <td class="sect1ion-title">3ο ΣΕΤ</td>
+            <td class="sect1on-title">4ο ΣΕΤ</td>
+            <td class="secti1on-title">5ο ΣΕΤ</td>
+            <td class="secti1on-title">ΠΟΝΤΟΙ</td>
+            <td class="sect1ion-title">ΣΕΤ</td>
+            <td>ΥΠΟΓΡΑΦΕΣ</td>
+        </tr>
+
+        <!-- Παίκτης 1 -->
+        <tr>
+            <td><strong>ΔΗΜΗΤΣΑΣ ΙΩΑΝΝΗΣ</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+
+        <!-- Παίκτης 2 -->
+        <tr>
+            <td><strong>ΚΑΤΣΟΥΠΑΚΗΣ ΑΝΑΣΤΑΣΙΟΣ</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+
+        <!-- Νικητής -->
+        <tr>
+
+            <td colspan="1" style="text-align: right">ΝΙΚΗΤΗΣ</td>
+            <td colspan="5" class="section-title"></td>
+            <td>ΣΚΟΡ</td>
+            <td colspan="2" class="section-title"></td>
+        </tr>
+    </table>
+</div>
+
+
+<button onclick="window.print()">Εκτύπωση den doyleyi</button>

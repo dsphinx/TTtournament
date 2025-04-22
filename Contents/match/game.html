@@ -1,0 +1,60 @@
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td, th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .fixed-width {
+    width: 350px; /* ή όσο θέλεις */
+    white-space: nowrap;
+  }
+</style>
+
+
+<div class="container my-4">
+  <table class="table table-bordered align-middle">
+    <thead>
+    <tr>
+      <th rowspan="3" class="align-middle">[@phaseA] -  <strong>[@gameGroups]</strong></th>
+    </tr>
+    <tr>
+      <th>1<sup>o</sup> </th>
+      <th>2<sup>o</sup> </th>
+      <th>3<sup>o</sup> </th>
+      <th>4<sup>o</sup> </th>
+      <th>5<sup>o</sup> </th>
+      <th>ΠΟΝΤΟΙ</th>
+      <th>ΣΕΤ</th>
+      <th>ΣΚΟΡ</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="fixed-width">[@player1Win][@player1]</td>
+      <td rowspan="2">[@set1]</td>
+      <td rowspan="2">[@set2]</td>
+      <td rowspan="2">[@set3]</td>
+      <td rowspan="2">[@set4]</td>
+      <td rowspan="2">[@set5]</td>
+      <td>[@player1Points]</td>
+      <td>[@setA]</td>
+      <td rowspan="2">[@setA]-[@setB]</td>
+      <td rowspan="2">[@date]</td>
+
+    </tr>
+    <tr>
+      <td class="fixed-width">[@player2Win][@player2]</td>
+      <td>[@player2Points]</td>
+      <td>[@setB]</td>
+<!--      <td>[@player2Score]</td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
